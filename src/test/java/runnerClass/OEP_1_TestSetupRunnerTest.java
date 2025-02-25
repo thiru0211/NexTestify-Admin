@@ -11,7 +11,8 @@ import io.cucumber.junit.CucumberOptions;
 //tags="@TC_02",
 		plugin = {"pretty",
 				"html:target/cucumber/Test Setup_cucumberhtml-report.html",
-				"json:target/cucumber/Test Setup_cucumber.json"
+				"json:target/cucumber/Test Setup_cucumber.json",
+				"rerun:target/failedScenarios/TestSetup_Failed.txt"
 				})
 public class OEP_1_TestSetupRunnerTest {
 

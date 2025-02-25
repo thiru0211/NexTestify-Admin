@@ -11,7 +11,8 @@ import io.cucumber.junit.CucumberOptions;
 //tags="@Test",
 		plugin = {"pretty",
 			"html:target/cucumber/Question Manager_cucumberhtml-report.html",
-			"json:target/cucumber/Question Manager_cucumber.json"
+			"json:target/cucumber/Question Manager_cucumber.json",
+			"rerun:target/failedScenarios/QuestionManager_Failed.txt"
 				})
 public class OEP_2_QuestionManagerRunnerTest {
 

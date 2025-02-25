@@ -19,7 +19,6 @@ import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import com.github.javafaker.Artist;
 import com.github.javafaker.Faker;
 
 import io.cucumber.java.en.Given;
@@ -188,13 +187,12 @@ public class OEP_3_StudyMaterial {
 	public void click_take_picture_button_in_Study_Material() throws InterruptedException {
 		Thread.sleep(2000);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath(
-				"//button[normalize-space(text())='Take Picture']")));
-		ele1 = driver.findElement(By.xpath(
-				"//button[normalize-space(text())='Take Picture']"));
+		wait.until(
+				ExpectedConditions.elementToBeClickable(By.xpath("//button[normalize-space(text())='Take Picture']")));
+		ele1 = driver.findElement(By.xpath("//button[normalize-space(text())='Take Picture']"));
 		ele1.click();
 	}
-	
+
 	@Then("Select valid topic name in create material")
 	public void select_valid_topic_name_in_create_material() throws InterruptedException {
 		Thread.sleep(2000);
@@ -670,7 +668,7 @@ public class OEP_3_StudyMaterial {
 		ele2 = driver.findElement(By.xpath("//div[normalize-space(text())='Test Topic']"));
 		ele2.click();
 	}
-	
+
 	@Then("Select valid subject name in add topic pop up in add material page")
 	public void select_valid_subject_name_in_add_topic_pop_up_in_add_material_page() throws InterruptedException {
 		Thread.sleep(2000);
@@ -686,7 +684,7 @@ public class OEP_3_StudyMaterial {
 		Thread.sleep(2000);
 		ele2.click();
 	}
-	
+
 	@Then("Select any topic name from the dropdown in topic")
 	public void select_any_topic_name_from_the_dropdown_in_topic() throws InterruptedException {
 		Thread.sleep(2000);
@@ -743,9 +741,9 @@ public class OEP_3_StudyMaterial {
 		for (int i = 0; i < length; i++) {
 			ele1.sendKeys(Keys.BACK_SPACE);
 		}
-		ele1.sendKeys(topicName+"s");
+		ele1.sendKeys(topicName + "s");
 	}
-	
+
 	@Then("Modify valid topic details in edit topic")
 	public void modify_valid_topic_details_in_edit_topic() {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
@@ -1056,7 +1054,7 @@ public class OEP_3_StudyMaterial {
 		ele1 = driver.findElement(By.xpath("//div[@class='Toastify__toast-body']"));
 		String actMsg = ele1.getText();
 		System.out.println("Error message displayed like: " + actMsg);
-		String expMsg="Question is required!";
+		String expMsg = "Question is required!";
 		Assert.assertEquals("Mandatory alert message is not displayed", actMsg, expMsg);
 	}
 
@@ -1250,7 +1248,7 @@ public class OEP_3_StudyMaterial {
 		ele1 = driver.findElement(By.xpath("//div[@class='Toastify__toast-body']"));
 		String actMsg = ele1.getText();
 		System.out.println("Success message displayed like: " + actMsg);
-		String expMsg="Question and answer updated successfully!";
+		String expMsg = "Question and answer updated successfully!";
 		Assert.assertEquals("Update button is not working", actMsg, expMsg);
 	}
 

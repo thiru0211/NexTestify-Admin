@@ -1293,7 +1293,7 @@ public class OEP_5_Admin {
 		ele1 = driver.findElement(By.xpath("//div[@class='Toastify__toast-body']"));
 		String actText = ele1.getText();
 		System.out.println("Success message displayed like: " + actText);
-		String expText="Admin User added successfully!";
+//		String expText="Admin User added successfully!";
 		boolean displayed = ele1.isDisplayed();
 		System.out.println("success message is: "+displayed);
 		Assert.assertTrue(ele1.isDisplayed());

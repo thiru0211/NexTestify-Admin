@@ -7,7 +7,6 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
 
-import org.jspecify.annotations.Nullable;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
@@ -813,7 +812,7 @@ public class OEP_2_QuestionManager {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("catName")));
 		ele1 = driver.findElement(By.id("catName"));
-		String text = ele1.getAttribute("value");
+		String text = ele1.getDomAttribute("value");
 		int length = text.length();
 		for (int i = 0; i < length; i++) {
 			ele1.sendKeys(Keys.BACK_SPACE);

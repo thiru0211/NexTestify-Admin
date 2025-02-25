@@ -11,7 +11,8 @@ import io.cucumber.junit.CucumberOptions;
 //tags="@TC_20",
 		plugin = {"pretty",
 			"html:target/cucumber/Study Material_cucumberhtml-report.html",
-			"json:target/cucumber/Study Material_cucumber.json"
+			"json:target/cucumber/Study Material_cucumber.json",
+			"rerun:target/failedScenarios/StudyMaterial_Failed.txt"
 				})
 public class OEP_3_StudyMaterialRunnerTest {
 

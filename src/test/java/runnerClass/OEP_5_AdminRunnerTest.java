@@ -13,7 +13,8 @@ monochrome = true,
 //tags="@TC_44",
 plugin = {"pretty",
 		"html:target/cucumber/Admin_cucumberhtml-report.html",
-		"json:target/cucumber/Admin_cucumber.json"
+		"json:target/cucumber/Admin_cucumber.json",
+		"rerun:target/failedScenarios/Admin_Failed.txt"
 		})
 
 public class OEP_5_AdminRunnerTest {
