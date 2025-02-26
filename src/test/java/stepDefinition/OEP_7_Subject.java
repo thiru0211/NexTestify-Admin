@@ -30,25 +30,6 @@ public class OEP_7_Subject {
 	public WebElement ele, ele1, ele2, ele3, ele4, ele5, ele6, ele7, ele8, ele9;
 	public WebDriverWait wait;
 
-//	public void enter_valid_username_in_the_searchbox_in_candidate_page(String username) throws InterruptedException {
-//		Thread.sleep(2000);
-//		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-//		wait.until(ExpectedConditions.presenceOfElementLocated(By.name("fname")));
-//		ele1 = driver.findElement(By.name("fname"));
-//		ele1.sendKeys(username);
-//	}
-//
-//	@When("Check entered username {string} is displayed or not in candidate page")
-//	public void check_entered_username_is_displayed_or_not_in_candidate_page(String username) {
-//		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-//		wait.until(ExpectedConditions
-//				.presenceOfElementLocated(By.xpath("(//div[@class='align-items-center text-alternate'])[1]")));
-//		ele1 = driver.findElement(By.xpath("(//div[@class='align-items-center text-alternate'])[1]"));
-//		String actualText = ele1.getText();
-//		String expectedText = "Thirumaran R";
-//		Assert.assertEquals("Entered Username is not displayed", actualText, expectedText);
-//	}
-
 	@Given("To Check subject is navigating to OEP URL is {string}")
 	public void to_check_subject_is_navigating_to_oep_url_is(String url) {
 		System.setProperty("webdriver.chrome.driver", ".\\Driver\\chromedriver.exe");

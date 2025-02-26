@@ -2,7 +2,7 @@ Feature: SUBJECT
 
   Background: Subject
     Given To Check subject is navigating to OEP URL is "http://192.168.1.30/OEPADMIN/"
-    When To Check subject Enter username and password are "thirumaran@sankarasoftware.com" and "Thirumaran@8870"
+    When To Check subject Enter username and password are "thirumaran@sankarasoftware.com" and "Thirumaran@001"
     And click the Signin button To Check subject page
     Then Click take picture button in subject page
     Then Click subject button in setup module

@@ -28,7 +28,7 @@ public class OEP_1_TestSetup {
 	public void to_check_test_setup_is_navigating_to_oep_url_is(String url) {
 		System.setProperty("webdriver.chrome.driver", ".\\Driver\\chromedriver.exe");
 		ChromeOptions option = new ChromeOptions();
-		option.addArguments("--headless=new");
+//		option.addArguments("--headless=new");
 		driver = new ChromeDriver(option);
 		driver.manage().window().maximize();
 		driver.get(url);
@@ -720,7 +720,7 @@ public class OEP_1_TestSetup {
 		Thread.sleep(2000);
 		ele1.clear();
 		Thread.sleep(2000);
-		ele1.sendKeys("Sample Main Test For Automation Testing");
+		ele1.sendKeys("Sample Test-Main Test");
 		Thread.sleep(4000);
 	}
 
@@ -729,8 +729,8 @@ public class OEP_1_TestSetup {
 		Thread.sleep(2000);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions
-				.elementToBeClickable(By.xpath("//div[text()='Sample Main Test For Automation Testing']")));
-		ele1 = driver.findElement(By.xpath("//div[text()='Sample Main Test For Automation Testing']"));
+				.elementToBeClickable(By.xpath("//div[text()='Sample Test-Main Test']")));
+		ele1 = driver.findElement(By.xpath("//div[text()='Sample Test-Main Test']"));
 		ele1.click();
 	}
 
@@ -902,7 +902,7 @@ public class OEP_1_TestSetup {
 		Thread.sleep(2000);
 		ele1.clear();
 		Thread.sleep(2000);
-		ele1.sendKeys("20");
+		ele1.sendKeys("50");
 	}
 
 	@Then("Select valid topic")
@@ -1159,7 +1159,7 @@ public class OEP_1_TestSetup {
 		Thread.sleep(2000);
 		ele1.clear();
 		Thread.sleep(2000);
-		ele1.sendKeys("20");
+		ele1.sendKeys("50");
 	}
 
 	@Then("Enter valid value in questions tab")
@@ -1191,13 +1191,13 @@ public class OEP_1_TestSetup {
 	@Then("Enter valid value in points tab")
 	public void enter_valid_value_in_points_tab() throws InterruptedException {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("tscore-2")));
-		ele1 = driver.findElement(By.id("tscore-2"));
+		wait.until(ExpectedConditions.elementToBeClickable(By.id("tscore-1")));
+		ele1 = driver.findElement(By.id("tscore-1"));
 		ele1.click();
 		Thread.sleep(2000);
 		ele1.clear();
 		Thread.sleep(2000);
-		ele1.sendKeys("20");
+		ele1.sendKeys("50");
 	}
 
 	@Then("Enter valid value in points tab in Question Manager")
@@ -1209,7 +1209,7 @@ public class OEP_1_TestSetup {
 		Thread.sleep(2000);
 		ele1.clear();
 		Thread.sleep(2000);
-		ele1.sendKeys("20");
+		ele1.sendKeys("50");
 	}
 
 	@Then("Enter valid in Time tab based on proper format")
@@ -2091,7 +2091,7 @@ public class OEP_1_TestSetup {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.elementToBeClickable(By.name("score")));
 		ele1 = driver.findElement(By.name("score"));
-		ele1.sendKeys("20");
+		ele1.sendKeys("50");
 	}
 
 	@Then("Select valid topic in add topics")
@@ -2135,7 +2135,7 @@ public class OEP_1_TestSetup {
 		Thread.sleep(2000);
 		ele1.click();
 		Thread.sleep(2000);
-		ele1.sendKeys("20");
+		ele1.sendKeys("50");
 	}
 
 	@Then("Enter valid time value in time tab")
@@ -2317,8 +2317,8 @@ public class OEP_1_TestSetup {
 		ele1.sendKeys("20");
 	}
 
-	@Then("Enter valid test activation date and time")
-	public void enter_valid_test_activation_date_and_time() throws InterruptedException {
+	@Then("Enter valid test activation date and time as {string}")
+	public void enter_valid_test_activation_date_and_time_as(String testActDate) throws InterruptedException {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//input[@class='form-control'])[2]")));
 		ele1 = driver.findElement(By.xpath("(//input[@class='form-control'])[2]"));
@@ -2328,13 +2328,13 @@ public class OEP_1_TestSetup {
 			ele1.sendKeys(Keys.BACK_SPACE);
 		}
 		Thread.sleep(2000);
-		ele1.sendKeys("January 4, 2026 2:20 AM");
+		ele1.sendKeys(testActDate);
 		Thread.sleep(2000);
 		ele1.sendKeys(Keys.TAB);
 	}
 
-	@Then("Enter valid last registration date and time")
-	public void enter_valid_last_registration_date_and_time() throws InterruptedException {
+	@Then("Enter valid last registration date and time as {string}")
+	public void enter_valid_last_registration_date_and_time_as(String lastRegDate) throws InterruptedException {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.elementToBeClickable(
 				By.xpath("//input[@class='form-control react-datepicker-ignore-onclickoutside']")));
@@ -2346,7 +2346,7 @@ public class OEP_1_TestSetup {
 			ele1.sendKeys(Keys.BACK_SPACE);
 		}
 		Thread.sleep(4000);
-		ele1.sendKeys("January 2, 2026 2:20 AM");
+		ele1.sendKeys(lastRegDate);
 	}
 
 	@Then("Click save button in certificate template page")

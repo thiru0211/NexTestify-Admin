@@ -3,14 +3,14 @@ Feature: LOGIN PAGE
   @TC_01
   Scenario: Login:Valid Check
     Given To Check Login is navigating to OEP URL is "http://192.168.1.30/OEPADMIN/"
-    When To Check Login Enter username and password are "thirumaran@sankarasoftware.com" and "Thirumaran@8870"
+    When To Check Login Enter username and password are "thirumaran@sankarasoftware.com" and "Thirumaran@001"
     And click the Signin button To Check Login
     Then close the Login Page
 
   @TC_02
   Scenario: Login:Sign Out Check
     Given To Check Login is navigating to OEP URL is "http://192.168.1.30/OEPADMIN/"
-    When To Check Login Enter username and password are "thirumaran@sankarasoftware.com" and "Thirumaran@8870"
+    When To Check Login Enter username and password are "thirumaran@sankarasoftware.com" and "Thirumaran@001"
     And click the Signin button To Check Login
     Then Click take picture button
     Then Click User logo button in Top right corner
@@ -21,7 +21,7 @@ Feature: LOGIN PAGE
   @TC_03
   Scenario: Login:Invalid Check
     Given To Check Login is navigating to OEP URL is "http://192.168.1.30/OEPADMIN/"
-    When To Check Login Enter Invalid username and valid password are "thirumaran1@sankarasoftware.com" and "Thirumaran@8870"
+    When To Check Login Enter Invalid username and valid password are "thirumaran1@sankarasoftware.com" and "Thirumaran@001"
     And click the Signin button To Check Login
     Then Check alert message is displayed or not
     Then close the Login Page
@@ -53,7 +53,7 @@ Feature: LOGIN PAGE
   @TC_07
   Scenario: Login:Without Mail Id Check
     Given To Check Login is navigating to OEP URL is "http://192.168.1.30/OEPADMIN/"
-    When To Check Login Enter password only "Thirumaran@8870"
+    When To Check Login Enter password only "Thirumaran@001"
     And click the Signin button To Check Login
     Then Check alert toast message is displayed in email tab or not
     Then close the Login Page
@@ -77,7 +77,7 @@ Feature: LOGIN PAGE
   @TC_10
   Scenario: Login:Invalid Check
     Given To Check Login is navigating to OEP URL is "http://192.168.1.30/OEPADMIN/"
-    When To Check Login Enter username and password are "test@yopmail.com" and "Thirumaran@8870"
+    When To Check Login Enter username and password are "test@yopmail.com" and "Thirumaran@001"
     And click the Signin button To Check Login
     Then Check alert message is displayed or not
     And click the Signin button To Check Login
@@ -98,7 +98,7 @@ Feature: LOGIN PAGE
   @TC_12
   Scenario: Login:Lock Account
     Given To Check Login is navigating to OEP URL is "http://192.168.1.30/OEPADMIN/"
-    When To Check Login Enter username and password are "thirumaran@yopmail.com" and "Thirumaran@8870"
+    When To Check Login Enter username and password are "thirumaran@yopmail.com" and "Thirumaran@001"
     And click the Signin button To Check Login
     Then Check alert message is displayed or not
     And click the Signin button To Check Login
@@ -114,7 +114,7 @@ Feature: LOGIN PAGE
   @TC_13
   Scenario: Login:Lock Account
     Given To Check Login is navigating to OEP URL is "http://192.168.1.30/OEPADMIN/"
-    When To Check Login Enter username and password are "thirumaran@yopmail.com" and "Thirumaran@8870"
+    When To Check Login Enter username and password are "thirumaran@yopmail.com" and "Thirumaran@001"
     And click the Signin button To Check Login
     Then Check alert message is displayed or not
     Then close the Login Page
@@ -122,7 +122,7 @@ Feature: LOGIN PAGE
   #@TC_14
   #Scenario: Login:Unlock Account
     #Given To Check Login is navigating to OEP URL is "http://192.168.1.30/OEPADMIN/"
-    #When To Check Login Enter username and password are "thirumaran@sankarasoftware.com" and "Thirumaran@8870"
+    #When To Check Login Enter username and password are "thirumaran@sankarasoftware.com" and "Thirumaran@001"
     #And click the Signin button To Check Login
     #Then Click admin button to unlock the account
     #And Search valid username "thirumaran@yopmail.com" in the searchbox to unlock the account
@@ -134,7 +134,7 @@ Feature: LOGIN PAGE
   @TC_15
   Scenario: Login:Enter button check
     Given To Check Login is navigating to OEP URL is "http://192.168.1.30/OEPADMIN/"
-    When To Check Login Enter Invalid username and valid password are "thirumaran@sankarasoftware.com" and "Thirumaran@8870"
+    When To Check Login Enter Invalid username and valid password are "thirumaran@sankarasoftware.com" and "Thirumaran@001"
     And Click ENTER button
     Then close the Login Page
 
@@ -149,7 +149,7 @@ Feature: LOGIN PAGE
   @TC_17
   Scenario: Login:With Inactive User Check
     Given To Check Login is navigating to OEP URL is "http://192.168.1.30/OEPADMIN/"
-    When To Check Login Enter inactive username and valid password are "inactiveuser@yopmail.com" and "Thirumaran@8870"
+    When To Check Login Enter inactive username and valid password are "inactiveuser@yopmail.com" and "Thirumaran@001"
     And click Forget password button
     Then Check alert message is displayed or not in Login Page
     Then close the Login Page
@@ -157,7 +157,7 @@ Feature: LOGIN PAGE
   @TC_18
   Scenario: Login:With Inactive User Check
     Given To Check Login is navigating to OEP URL is "http://192.168.1.30/OEPADMIN/"
-    When To Check Login Enter inactive username and valid password are "inactiveuser@yopmail.com" and "Thirumaran@8870"
+    When To Check Login Enter inactive username and valid password are "inactiveuser@yopmail.com" and "Thirumaran@001"
     And click the Signin button To Check Login
     Then Check alert message is displayed or not
     Then close the Login Page

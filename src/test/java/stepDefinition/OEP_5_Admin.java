@@ -34,7 +34,7 @@ public class OEP_5_Admin {
 	public void to_check_admin_is_navigating_to_oep_url_is(String url) {
 		System.setProperty("webdriver.chrome.driver", ".\\Driver\\chromedriver.exe");
 		ChromeOptions option = new ChromeOptions();
-		option.addArguments("--headless=new");
+//		option.addArguments("--headless=new");
 		driver = new ChromeDriver(option);
 		driver.manage().window().maximize();
 		driver.get(url);
@@ -1289,17 +1289,40 @@ public class OEP_5_Admin {
 	public void check_admin_user_created_success_message_is_displayed_or_not() throws InterruptedException {
 		Thread.sleep(2000);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='Toastify__toast-body']")));
-		ele1 = driver.findElement(By.xpath("//div[@class='Toastify__toast-body']"));
-		String actText = ele1.getText();
-		System.out.println("Success message displayed like: " + actText);
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='Toastify__toast-body']")));
+//		ele1 = driver.findElement(By.xpath("//div[@class='Toastify__toast-body']"));
+//		String actText = ele1.getText();
+//		System.out.println("Success message displayed like: " + actText);
 //		String expText="Admin User added successfully!";
-		boolean displayed = ele1.isDisplayed();
-		System.out.println("success message is: "+displayed);
-		Assert.assertTrue(ele1.isDisplayed());
-//		if(ele1.isDisplayed()) {
+//		boolean displayed = ele1.isDisplayed();
+//		System.out.println("success message is: "+displayed);
+//		Assert.assertTrue(ele1.isDisplayed());
+//		if(!ele1.isDisplayed()) {
 //		Assert.assertEquals("User cannot able to create the admin (or) success message is not displayed properly", actText, expText);
 //		}
+		
+		try {
+            ele1 = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='Toastify__toast-body']")));
+            String actText = ele1.getText();
+            System.out.println("Success message displayed like: " + actText);
+            boolean displayed = ele1.isDisplayed();
+            System.out.println("success message is: " + displayed);
+            String expText="Admin User added successfully!";
+            Assert.assertTrue(ele1.isDisplayed());
+            Assert.assertEquals(expText, actText); // Moved assertion here
+        } catch (org.openqa.selenium.TimeoutException e) {
+            System.out.println("Timeout occurred while waiting for the toast message: " + e.getMessage());
+            Assert.fail("User cannot able to create the admin (or) success message is not displayed properly"); //fail the test
+        } catch (org.openqa.selenium.NoSuchElementException e) {
+            System.out.println("Toast message element not found: " + e.getMessage());
+            Assert.fail("User cannot able to create the admin (or) success message is not displayed properly"); //fail the test
+        } catch (AssertionError e) {
+            System.out.println("Assertion error: " + e.getMessage());
+            Assert.fail("Assertion error: " + e.getMessage());//fail the test
+        }
+		
+		
+		
 	}
 	
 	@Then("Check admin user updated success message is displayed or not")

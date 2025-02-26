@@ -98,7 +98,7 @@ public class OEP_6_Candidate {
 				.presenceOfElementLocated(By.xpath("(//div[@class='align-items-center text-alternate'])[1]")));
 		ele1 = driver.findElement(By.xpath("(//div[@class='align-items-center text-alternate'])[1]"));
 		String actualText = ele1.getText();
-		String expectedText = "Thirumaran R";
+		String expectedText = "Ranjith Kumar";
 		Assert.assertEquals("Entered Username is not displayed", actualText, expectedText);
 	}
 
@@ -138,7 +138,7 @@ public class OEP_6_Candidate {
 				.presenceOfElementLocated(By.xpath("(//div[@class='align-items-center text-alternate'])[3]")));
 		ele1 = driver.findElement(By.xpath("(//div[@class='align-items-center text-alternate'])[3]"));
 		String actualText = ele1.getText();
-		String expectedText = "+91-1234569870";
+		String expectedText = "+91-8098911086";
 		Assert.assertEquals("Entered Username is not displayed", actualText, expectedText);
 	}
 	

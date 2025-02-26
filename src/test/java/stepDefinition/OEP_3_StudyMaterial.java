@@ -7,10 +7,12 @@ import java.awt.datatransfer.StringSelection;
 import java.awt.event.KeyEvent;
 import java.time.Duration;
 
+import org.jspecify.annotations.Nullable;
 import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -34,7 +36,7 @@ public class OEP_3_StudyMaterial {
 	public void to_check_study_material_is_navigating_to_oep_url_is(String url) {
 		System.setProperty("webdriver.chrome.driver", ".\\Driver\\chromedriver.exe");
 		ChromeOptions option = new ChromeOptions();
-		option.addArguments("--headless=new");
+//		option.addArguments("--headless=new");
 		driver = new ChromeDriver(option);
 		driver.manage().window().maximize();
 		driver.get(url);
@@ -50,6 +52,7 @@ public class OEP_3_StudyMaterial {
 		ele2 = driver.findElement(By.name("password"));
 		ele2.clear();
 		ele2.sendKeys(password);
+		
 	}
 
 	@When("click the Signin button To Check Study Material")
@@ -408,12 +411,19 @@ public class OEP_3_StudyMaterial {
 			throws InterruptedException {
 		Thread.sleep(2000);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='Toastify__toast-body']")));
-		ele1 = driver.findElement(By.xpath("//div[@class='Toastify__toast-body']"));
-		String actMsg = ele1.getText();
-		System.out.println("Error message displayed like: " + actMsg);
-		String expMsg = "Subject updated successfully!";
-		Assert.assertEquals("Error message is not displayed", actMsg, expMsg);
+		try {
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='Toastify__toast-body']")));
+			ele1 = driver.findElement(By.xpath("//div[@class='Toastify__toast-body']"));
+			String actMsg = ele1.getText();
+			System.out.println("Error message displayed like: " + actMsg);
+			String expMsg = "Subject updated successfully!";
+			Assert.assertEquals("Error message is not displayed", actMsg, expMsg);
+		} catch (TimeoutException e) {
+		    System.out.println("Update button is not working"); // Print the message here
+		    Assert.fail("Update button is not working"); 
+		}
+		
+		
 	}
 
 	@When("Click add button in the subject tab")

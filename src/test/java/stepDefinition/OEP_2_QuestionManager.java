@@ -11,6 +11,7 @@ import org.junit.Assert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.Keys;
+import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -32,7 +33,7 @@ public class OEP_2_QuestionManager {
 	public void to_check_create_question_is_navigating_to_oep_url_is(String url) {
 		System.setProperty("webdriver.chrome.driver", ".\\Driver\\chromedriver.exe");
 		ChromeOptions option = new ChromeOptions();
-		option.addArguments("--headless=new");
+//		option.addArguments("--headless=new");
 		driver = new ChromeDriver(option);
 		driver.manage().window().maximize();
 		driver.get(url);
@@ -752,7 +753,7 @@ public class OEP_2_QuestionManager {
 		ele1 = driver.findElement(By.xpath("//div[@class='Toastify__toast-body']"));
 		String actualMessage = ele1.getText();
 		System.out.println("Error message displayed like: " + actualMessage);
-		String expectedMessage = "Subject already exist!";
+		String expectedMessage = "Subject already exists!";
 		Assert.assertEquals("Error message need to display", actualMessage, expectedMessage);
 	}
 
@@ -1297,13 +1298,13 @@ public class OEP_2_QuestionManager {
 
 	@Then("Check success message is displayed or not in Question Type")
 	public void check_success_message_is_displayed_or_not_in_question_type() throws InterruptedException {
-		Thread.sleep(2000);
+		Thread.sleep(1000);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='Toastify__toast-body']")));
 		ele1 = driver.findElement(By.xpath("//div[@class='Toastify__toast-body']"));
 		String actualMessage = ele1.getText();
 		System.out.println("Success message displayed like: " + actualMessage);
-		String expectedMessage="Question Type deleted successfully!";
+		String expectedMessage="Question type deleted successfully!";
 		Assert.assertEquals("Question type cannot able to delete", actualMessage, expectedMessage);
 	}
 
@@ -2942,7 +2943,7 @@ public class OEP_2_QuestionManager {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.name("txtSearch")));
 		ele1 = driver.findElement(By.name("txtSearch"));
-		ele1.sendKeys("Write an Essay about AI");
+		ele1.sendKeys("Test question for automation testing");
 	}
 
 	@Then("Select All Subject option in status dropdown")
@@ -3113,12 +3114,19 @@ public class OEP_2_QuestionManager {
 	public void check_success_message_is_displayed_or_not_in_edit_question_page() throws InterruptedException {
 		Thread.sleep(2000);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='Toastify__toast-body']")));
-		ele1 = driver.findElement(By.xpath("//div[@class='Toastify__toast-body']"));
-		String actualMessage = ele1.getText();
-		System.out.println("Success message displayed like: " + actualMessage);
-		String expMessage="Question & Answer updated successfully!";
-		Assert.assertEquals("Save button is not working", actualMessage, expMessage);
+		
+		
+		try {
+			wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//div[@class='Toastify__toast-body']")));
+			ele1 = driver.findElement(By.xpath("//div[@class='Toastify__toast-body']"));
+			String actualMessage = ele1.getText();
+			System.out.println("Success message displayed like: " + actualMessage);
+			String expMessage="Question & Answer updated successfully!";
+			Assert.assertEquals("Save button is not working", actualMessage, expMessage);
+		} catch (TimeoutException e) {
+		    System.out.println("Update button is not working"); // Print the message here
+		    Assert.fail("Update button is not working"); 
+		}
 	}
 
 }

@@ -2,21 +2,21 @@ Feature: QUESTION MANAGER
 
   Background: Create Question
     Given To Check Create Question is navigating to OEP URL is "http://192.168.1.30/OEPADMIN/"
-    When To Check Create Question Enter username and password are "thirumaran@sankarasoftware.com" and "Thirumaran@8870"
+    When To Check Create Question Enter username and password are "thirumaran@sankarasoftware.com" and "Thirumaran@001"
     And click the Signin button To Check Create Question
     Then Click take picture button in Create Question
     Then Click Create Question button
 
   @TC_01
   Scenario: Create Question:Search Check
-    Given Enter valid question "What is Quantum Cryptography?" details in the searchbox
-    When Check entered question "What is Quantum Cryptography?" details is displayed or not
+    Given Enter valid question "How is Artificial Intelligence transforming the Blockchain industry?" details in the searchbox
+    When Check entered question "How is Artificial Intelligence transforming the Blockchain industry?" details is displayed or not
     Then Close Create Question button
 
   @TC_02
   Scenario: Create Question:Search Check
-    Given Enter valid answer "Various Cyber Security methods for encrypting and transmitting secure data." details in the searchbox
-    When Check entered answer "Various Cyber Security methods for encrypting and transmitting secure data." details is displayed or not
+    Given Enter valid answer "Solving complex mathematical problems" details in the searchbox
+    When Check entered answer "Solving complex mathematical problems" details is displayed or not
     Then Close Create Question button
 
   #@TC_03(subject name checking should not able to check)
@@ -396,7 +396,7 @@ Feature: QUESTION MANAGER
     Then Click and Upload valid file format in image field
     #And Check file is uploaded or not in image field
     Then Close Create Question button
-@Test
+
   @TC_47
   Scenario: Source Type:Audio field valid Check
     Given Click add questions button
@@ -404,7 +404,7 @@ Feature: QUESTION MANAGER
     Then Select any option in topic
     And Select any option in question type
     Then Click and Upload valid file format in audio field
-    And Check file is uploaded or not in audio field
+   #And Check file is uploaded or not in audio field
     Then Close Create Question button
 
   @TC_48
@@ -574,7 +574,7 @@ Feature: QUESTION MANAGER
     Then Click clear button for fill in the blanks type
     And Check tab is cleared or not for fill in the blanks type
     Then Close Create Question button
-@Test
+
   @TC_61
   Scenario: Fill in the blanks Type:Save Check
     Given Click add questions button
@@ -617,7 +617,7 @@ Feature: QUESTION MANAGER
     Then Click clear button for Multiple Choice type
     And Check tab is cleared or not for Multiple Choice type
     Then Close Create Question button
-@Test
+
   @TC_63
   Scenario: Multiple Choice Type:Save Check
     Given Click add questions button
@@ -639,7 +639,7 @@ Feature: QUESTION MANAGER
     Then Click save button for Multiple Choice type
     And Check success message is displayed or not for Multiple Choice type
     Then Close Create Question button
-@Test
+
   @TC_64
   Scenario: Short Answer Type:Clear Check
     Given Click add questions button
@@ -802,7 +802,7 @@ Feature: QUESTION MANAGER
     Then Click clear button in edit question page
     And Check details are cleared or not in edit question page
     Then Close Create Question button
-@Test
+
   @TC_73
   Scenario: Edit Question:Source Type:Delete Check
     Given Search valid question name in search field

@@ -372,7 +372,8 @@ public class OEP_8_Reports {
 		ele1.click();
 	}
 	@Then("Click back button in Event Log page")
-	public void click_back_button_in_event_log_page() {
+	public void click_back_button_in_event_log_page() throws InterruptedException {
+		Thread.sleep(2000);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[normalize-space(text())='Back']")));
 		ele1 = driver.findElement(By.xpath("//button[normalize-space(text())='Back']"));

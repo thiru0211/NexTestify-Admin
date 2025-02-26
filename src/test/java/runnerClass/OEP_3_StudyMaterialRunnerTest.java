@@ -6,9 +6,9 @@ import io.cucumber.junit.Cucumber;
 import io.cucumber.junit.CucumberOptions;
 
 @RunWith(Cucumber.class)
-@CucumberOptions(features = "C:\\Users\\thirumaran\\eclipse-workspace\\NexTestify_Cucumber\\src\\test\\resources\\FeatureFiles\\3_OEP_StudyMaterial.feature", glue = "stepDefinition", monochrome = true,
+@CucumberOptions(features = "src\\test\\resources\\FeatureFiles\\3_OEP_StudyMaterial.feature", glue = "stepDefinition", monochrome = true,
 //dryRun = true,
-//tags="@TC_20",
+//tags="@Test",
 		plugin = {"pretty",
 			"html:target/cucumber/Study Material_cucumberhtml-report.html",
 			"json:target/cucumber/Study Material_cucumber.json",
@@ -16,5 +16,4 @@ import io.cucumber.junit.CucumberOptions;
 				})
 public class OEP_3_StudyMaterialRunnerTest {
 
-	
 }

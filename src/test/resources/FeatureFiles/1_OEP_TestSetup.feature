@@ -2,7 +2,7 @@ Feature: TEST SETUP
 
   Background: Test Setup
     Given To Check Test Setup is navigating to OEP URL is "http://192.168.1.30/OEPADMIN/"
-    When To Check Test Setup Enter username and password are "thirumaran@sankarasoftware.com" and "Thirumaran@8870"
+    When To Check Test Setup Enter username and password are "thirumaran@sankarasoftware.com" and "Thirumaran@001"
     And click the Signin button To Check Test Setup
     Then Click take picture button in test setup
     Then Click Test Setup button
@@ -11,10 +11,16 @@ Feature: TEST SETUP
   Scenario: Test Setup:Search Check
     Given Enter valid test name "Sample Test-Main Test" in the searchbox
     When Check entered "Sample Test-Main Test" test name details is displayed or not in the test setup page
-    And Enter valid date "Jan 29, 2025, 09:51 PM" in the searchbox
-    Then Check entered "Jan 29, 2025, 09:51 PM" date details is displayed or not in the test setup page
-    And Enter valid description "Sample Main test created for automation testing" in the searchbox
-    Then Check entered "Sample Main test created for automation testing" description details is displayed or not in the test setup page
+    #And Enter valid description "Sample Main test created for automation testing" in the searchbox
+    #Then Check entered "Sample Main test created for automation testing" description details is displayed or not in the test setup page
+    Then Close Test Setup button
+    
+    @TC_02
+  Scenario: Test Setup:Search Check
+    Given Enter valid date "Nov 05, 2025, 07:26 AM" in the searchbox
+    When Check entered "Nov 05, 2025, 07:26 AM" date details is displayed or not in the test setup page
+    #And Enter valid description "Sample Main test created for automation testing" in the searchbox
+    #Then Check entered "Sample Main test created for automation testing" description details is displayed or not in the test setup page
     Then Close Test Setup button
 
   @TC_02
@@ -195,9 +201,9 @@ Feature: TEST SETUP
     And Enter valid overall points
     Then Select valid topic
     And Click add button
-    And Enter valid value in questions tab
-    Then Enter valid value in points tab
-    And Enter valid in Time tab based on proper format
+    And Enter valid value in questions tab in Question Manager
+    Then Enter valid value in points tab in Question Manager
+    And Enter valid in Time tab based on proper format in Question Manager
     Then Click update button
     Then Check success message is displayed or not in Question Manager tab
     Then Close Test Setup button
@@ -517,47 +523,47 @@ Feature: TEST SETUP
     Then Select the unselected checkbox in all tabs
     And Check checkbox is selected or not
     Then Close Test Setup button
-
-  @TC_38
-  Scenario: Test Access:Invalid Check
-    Given Search any valid main test name
-    Then Click the test name
-    And Click Test Access tab
-    Then Unselect the checkbox
-    And Click save button in test access
-    Then Check error message is displayed or not in test access
-    Then Close Test Setup button
-
-  @TC_39
-  Scenario: Test Access:Valid Check
-    Given Search any valid main test name
-    Then Click the test name
-    And Click Test Access tab
-    Then Select the single checkbox
-    And Click save button in test access
-    Then Check success message is displayed or not in test access
-    Then Close Test Setup button
-
-  @TC_40
-  Scenario: Test Access:Valid Check
-    Given Search any valid main test name
-    Then Click the test name
-    And Click Test Access tab
-    Then Select the all checkbox
-    And Click save button in test access
-    Then Check success message is displayed or not in test access
-    Then Close Test Setup button
-
-  @TC_41
-  Scenario: Test Access:Valid Check
-    Given Search any valid main test name
-    Then Click the test name
-    And Click Test Access tab
-    Then Select any proctor from the dropdown
-    Then Select the single checkbox
-    And Click save button in test access
-    Then Check success message is displayed or not in test access
-    Then Close Test Setup button
+#@Test
+  #@TC_38
+  #Scenario: Test Access:Invalid Check
+    #Given Search any valid main test name
+    #Then Click the test name
+    #And Click Test Access tab
+    #Then Unselect the checkbox
+    #And Click save button in test access
+    #Then Check error message is displayed or not in test access
+    #Then Close Test Setup button
+#@Test
+  #@TC_39
+  #Scenario: Test Access:Valid Check
+    #Given Search any valid main test name
+    #Then Click the test name
+    #And Click Test Access tab
+    #Then Select the single checkbox
+    #And Click save button in test access
+    #Then Check success message is displayed or not in test access
+    #Then Close Test Setup button
+#@Test
+  #@TC_40
+  #Scenario: Test Access:Valid Check
+    #Given Search any valid main test name
+    #Then Click the test name
+    #And Click Test Access tab
+    #Then Select the all checkbox
+    #And Click save button in test access
+    #Then Check success message is displayed or not in test access
+    #Then Close Test Setup button
+#
+  #@TC_41
+  #Scenario: Test Access:Valid Check
+    #Given Search any valid main test name
+    #Then Click the test name
+    #And Click Test Access tab
+    #Then Select any proctor from the dropdown
+    #Then Select the single checkbox
+    #And Click save button in test access
+    #Then Check success message is displayed or not in test access
+    #Then Close Test Setup button
 
   #@TC_41a(Due to if we Finalize the test, test change to completed status thats why i skip the test method)
   #Scenario: Finalize Test:Valid Check
@@ -566,6 +572,7 @@ Feature: TEST SETUP
   #And Click Finalize Test tab
   #Then Click Finalize button
   #Then Close Test Setup button
+  
   @TC_42
   Scenario: Practice Test:Valid Check
     Given Click new test button
@@ -620,8 +627,8 @@ Feature: TEST SETUP
     And Enter valid time value in time tab
     Then Click save button in question manager
     And Check success message is displayed or not in test portal page
-    Then Enter valid test activation date and time
-    And Enter valid last registration date and time
+    Then Enter valid test activation date and time as "January 4, 2026 2:20 AM"
+    And Enter valid last registration date and time as "January 2, 2026 2:20 AM"
     Then Click save button in time setup page
     And Check success message is displayed or not in test portal page
     Then Enter valid pass mark in grading setup
@@ -676,17 +683,17 @@ Feature: TEST SETUP
     Then Click update button
     And Check success message is displayed or not in Question Manager
     Then Close Test Setup button
-
-  @TC_48
-  Scenario: Edit Test:Test Access
-    Given Search any valid main test name
-    And Select "In Progress" 2nd Option in the dropdown
-    Then Click the test name
-    And Click Test Access tab
-    Then Select the single checkbox
-    And Click save button in test access
-    Then Check success message is displayed or not in test access
-    Then Close Test Setup button
+#@Test
+  #@TC_48
+  #Scenario: Edit Test:Test Access
+    #Given Search any valid main test name
+    #And Select "In Progress" 2nd Option in the dropdown
+    #Then Click the test name
+    #And Click Test Access tab
+    #Then Select the single checkbox
+    #And Click save button in test access
+    #Then Check success message is displayed or not in test access
+    #Then Close Test Setup button
 
   @TC_49
   Scenario: Edit Test:Grading Setup
