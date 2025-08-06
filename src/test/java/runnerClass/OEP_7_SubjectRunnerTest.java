@@ -12,9 +12,9 @@ monochrome = true,
 //dryRun = true,
 //tags="@Test",
 plugin = {"pretty",
-		"html:target/cucumber/Candidate_cucumberhtml-report.html",
-		"json:target/cucumber/Candidate_cucumber.json",
-		"rerun:target/failedScenarios/Candidate_Failed.txt"
+		"html:target/cucumber/Subject_cucumberhtml-report.html",
+		"json:target/cucumber/Subject_cucumber.json",
+		"rerun:target/failedScenarios/Subject_Failed.txt"
 		})
 
 public class OEP_7_SubjectRunnerTest {

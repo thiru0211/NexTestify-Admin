@@ -303,7 +303,6 @@ public class OEP_1_TestSetup {
 		String actualDescription = ele1.getText();
 		System.out.println("Actual description displayed as: " + actualDescription);
 		boolean testTypeContains = actualDescription.contains(option);
-//		
 //		String expectedDescription = option;
 //		Assert.assertEquals("Page displayed invalid details", actualDescription, expectedDescription);\
 
