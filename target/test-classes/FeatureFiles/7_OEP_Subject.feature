@@ -1,10 +1,9 @@
 Feature: SUBJECT
 
   Background: Subject
-    Given To Check subject is navigating to OEP URL is "http://192.168.1.30/OEPADMIN/"
-    When To Check subject Enter username and password are "thirumaran@sankarasoftware.com" and "Thirumaran@001"
+    Given To Check subject is navigating to OEP URL is "https://hedgeonline.in/OEPADMIN/Login"
+    When To Check subject Enter username and password are "thirumaran@sankarasoftware.com" and "Thirumaran@123"
     And click the Signin button To Check subject page
-    Then Click take picture button in subject page
     Then Click subject button in setup module
 
   @TC_01
@@ -21,13 +20,13 @@ Feature: SUBJECT
   @TC_03
   Scenario: Subject:Filter Check
     Given Select "Active" 2nd option in the dropdown in subject page
-    #When Check selected 2nd option "Active" is displayed or not in subject page
+    When Check selected option "Active" is displayed or not in subject page
     Then Close subject button
 
   @TC_04
   Scenario: Subject:Filter Check
     Given Select "Inactive" 3rd option in the dropdown in subject page
-    #When Check selected 3rd option "Inactive" is displayed or not in subject page
+    When Check selected option "Inactive" is displayed or not in subject page
     Then Close subject button
 
   @TC_05
@@ -119,7 +118,7 @@ Feature: SUBJECT
     Given Click add subject button in subject page
     When Click file upload button in add subject
     Then Upload valid file format in add subject
-    #And Check success message is displayed or not in add subject
+    And Check success message is displayed or not in add subject
     Then Close subject button
 
   @TC_17

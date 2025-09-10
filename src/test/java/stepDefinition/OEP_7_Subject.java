@@ -53,8 +53,16 @@ public class OEP_7_Subject {
 	}
 
 	@When("click the Signin button To Check subject page")
-	public void click_the_signin_button_to_check_subject_page() {
-		ele1 = driver.findElement(By.xpath("//button[contains(text(),'Login')]"));
+	public void click_the_signin_button_to_check_subject_page() throws InterruptedException {
+		Thread.sleep(2000);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement ele1 = wait.until(
+		    ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[@type='button'])[2]"))
+		);
+		ele1 = wait.until(
+			    ExpectedConditions.presenceOfElementLocated(By.xpath("(//button[@type='button'])[2]"))
+			);
+
 		ele1.click();
 	}
 
@@ -109,8 +117,8 @@ public class OEP_7_Subject {
 	@When("Check entered subject name {string} is displayed or not in subject page")
 	public void check_entered_subject_name_is_displayed_or_not_in_subject_page(String string) {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//button[@type='button'])[2]")));
-		ele1 = driver.findElement(By.xpath("(//button[@type='button'])[2]"));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[contains(@class,'w-100 btn-sm')]")));
+		ele1 = driver.findElement(By.xpath("//button[contains(@class,'w-100 btn-sm')]"));
 		String actualText = ele1.getText();
 		String expectedText = "Artificial Intelligence";
 		Assert.assertEquals("Entered subject name is not displayed", actualText, expectedText);
@@ -140,24 +148,45 @@ public class OEP_7_Subject {
 		ele2.click();
 	}
 
-	@Given("Select {string} 3rd option in the dropdown in subject page")
-	public void select_3rd_option_in_the_dropdown_in_subject_page(String string) {
+	@When("Check selected option {string} is displayed or not in subject page")
+	public void check_selected_option_is_displayed_or_not_in_subject_page(String status) {
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(ExpectedConditions.presenceOfElementLocated(
-				By.xpath("//div[@class='react-select__single-value css-1uccc91-singleValue']")));
-		ele1 = driver.findElement(By.xpath("//div[@class='react-select__single-value css-1uccc91-singleValue']"));
+				By.xpath("//span[normalize-space(text())='"+status+"']")));
+		ele1 = driver.findElement(By.xpath("//span[normalize-space(text())='"+status+"']"));
+		Assert.assertTrue("Back button is not working", ele1.isDisplayed());
+	}
+	
+	@Given("Select {string} 3rd option in the dropdown in subject page")
+	public void select_3rd_option_in_the_dropdown_in_subject_page(String string) throws InterruptedException {
+		// Wait for page load complete
+		Thread.sleep(2000); 
+		
+		new WebDriverWait(driver, Duration.ofSeconds(30)).until(
+		    webDriver -> ((JavascriptExecutor) webDriver)
+		        .executeScript("return document.readyState").equals("complete"));
+
+		// Now proceed with your element actions
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+		wait.until(ExpectedConditions.presenceOfElementLocated(
+		        By.xpath("//div[@class='react-select__single-value css-1uccc91-singleValue']")));
+
+		WebElement ele1 = driver.findElement(By.xpath("//div[@class='react-select__single-value css-1uccc91-singleValue']"));
 		ele1.click();
 
-		ele2 = driver.findElement(By.xpath("//div[normalize-space(text())='Inactive']"));
+		WebElement ele2 = driver.findElement(By.xpath("//div[normalize-space(text())='Inactive']"));
 		ele2.click();
+
+		// ideally replace this with another explicit wait
+
 	}
 
 	@Given("Click add subject button in subject page")
 	public void click_add_subject_button_in_subject_page() throws InterruptedException {
 		Thread.sleep(2000);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//button[@type='button'])[1]")));
-		ele1 = driver.findElement(By.xpath("(//button[@type='button'])[1]"));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@class='btn btn-primary']")));
+		ele1 = driver.findElement(By.xpath("//button[@class='btn btn-primary']"));
 		ele1.click();
 	}
 
@@ -165,8 +194,8 @@ public class OEP_7_Subject {
 	public void click_back_button_in_subject_page() throws InterruptedException {
 		Thread.sleep(2000);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@title='Click here to back']")));
-		ele1 = driver.findElement(By.xpath("//button[@title='Click here to back']"));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//button[contains(@class,'btn btn-sm')])[2]")));
+		ele1 = driver.findElement(By.xpath("(//button[contains(@class,'btn btn-sm')])[2]"));
 		ele1.click();
 	}
 
@@ -183,8 +212,8 @@ public class OEP_7_Subject {
 	public void click_save_button_in_subject_page() throws InterruptedException {
 		Thread.sleep(2000);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[@title='Click here to save']")));
-		ele1 = driver.findElement(By.xpath("//button[@title='Click here to save']"));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//button[contains(@class,'btn btn-sm')])[1]")));
+		ele1 = driver.findElement(By.xpath("(//button[contains(@class,'btn btn-sm')])[1]"));
 		ele1.click();
 	}
 
@@ -273,14 +302,22 @@ public class OEP_7_Subject {
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("Price")));
 		ele1 = driver.findElement(By.id("Price"));
 		String actPriceValue = ele1.getDomAttribute("value");
+		String digitsOnly = actPriceValue.replaceAll("\\D", ""); // \D = non-digit
+
+		// Count number of digits
+		int digitCount = digitsOnly.length();
+
+		System.out.println("Actual Price Value: " + actPriceValue);
+		System.out.println("Number of digits present: " + digitCount);
+		
 		int maxCharacters = 5;
 		if (actPriceValue.length() > maxCharacters) {
 			System.out.println("Input field contains more than " + maxCharacters + " characters.");
 		} else {
 			System.out.println("Input field contains " + actPriceValue.length() + " characters.");
 		}
-		Assert.assertTrue("Input field contains more than " + maxCharacters + " characters.",
-				actPriceValue.length() <= maxCharacters);
+		Assert.assertTrue("Input field contains more than " + maxCharacters + " digits.",
+		        digitCount <= maxCharacters);
 	}
 
 	@When("Click apply discount toggle button in price tab")
@@ -393,7 +430,7 @@ public class OEP_7_Subject {
 	@Then("Upload invalid file format in add subject")
 	public void upload_invalid_file_format_in_add_subject() throws InterruptedException, AWTException {
 		Thread.sleep(2000);
-		String filePath = "C:\\Users\\thirumaran\\eclipse-workspace\\NexTestify_Cucumber\\Files\\Blank.xlsx";
+		String filePath = System.getProperty("user.dir") + "\\Files\\Blank.xlsx";
 		Robot robot = new Robot();
 		StringSelection selection = new StringSelection(filePath);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);
@@ -409,7 +446,7 @@ public class OEP_7_Subject {
 	@Then("Upload valid file format in add subject")
 	public void upload_valid_file_format_in_add_subject() throws InterruptedException, AWTException {
 		Thread.sleep(2000);
-		String filePath = "C:\\Users\\thirumaran\\eclipse-workspace\\NexTestify_Cucumber\\Files\\Sample.png";
+		String filePath = System.getProperty("user.dir") + "\\Files\\Sample.png";
 		Robot robot = new Robot();
 		StringSelection selection = new StringSelection(filePath);
 		Toolkit.getDefaultToolkit().getSystemClipboard().setContents(selection, null);

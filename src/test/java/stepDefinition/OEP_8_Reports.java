@@ -45,8 +45,16 @@ public class OEP_8_Reports {
 		ele2.sendKeys(password);
 	}
 	@When("click the Signin button To Check Reports page")
-	public void click_the_signin_button_to_check_reports_page() {
-		ele1 = driver.findElement(By.xpath("//button[contains(text(),'Login')]"));
+	public void click_the_signin_button_to_check_reports_page() throws InterruptedException {
+		Thread.sleep(2000);
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		WebElement ele1 = wait.until(
+		    ExpectedConditions.visibilityOfElementLocated(By.xpath("(//button[@type='button'])[2]"))
+		);
+		ele1 = wait.until(
+			    ExpectedConditions.presenceOfElementLocated(By.xpath("(//button[@type='button'])[2]"))
+			);
+
 		ele1.click();
 	}
 	@Then("Click take picture button in Reports page")
@@ -59,19 +67,36 @@ public class OEP_8_Reports {
 		ele1.click();
 	}
 	@Then("Click Reports button")
-	public void click_reports_button() throws InterruptedException {
-		Thread.sleep(2000);
-		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+	public void click_reports_button() {
+		wait = new WebDriverWait(driver, Duration.ofSeconds(60));
+
+		// ✅ Wait for full page load
 		wait.until(
-				ExpectedConditions.elementToBeClickable(By.xpath("//li[contains(.,'ReportsTest ResultsEvent Log')]")));
-		ele1 = driver.findElement(By.xpath("//li[contains(.,'ReportsTest ResultsEvent Log')]"));
+				driver -> ((JavascriptExecutor) driver).executeScript("return document.readyState").equals("complete"));
+
+		// ✅ Wait for collapse button to be clickable
+		By collapseToggle = By.xpath("(//a[@data-bs-toggle='collapse'])[8]");
+		wait.until(ExpectedConditions.elementToBeClickable(collapseToggle));
+
+		// ✅ Wait until the loader disappears
+		By loader = By.cssSelector("div.loaderStyle"); // Adjust if needed
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(loader));
+
+		// ✅ Now safely move and click the element
+		By labelSpan = By.xpath("(//a[@data-bs-toggle='collapse'])[8]");
+		ele1 = wait.until(ExpectedConditions.visibilityOfElementLocated(labelSpan));
 		Actions action = new Actions(driver);
 		action.moveToElement(ele1).build().perform();
 		ele1.click();
+
+		// ✅ Click submenu item
+		By submenuLink = By.xpath("(//ul[@class='collapse show']//a[1])[1]");
+		ele2 = wait.until(ExpectedConditions.elementToBeClickable(submenuLink));
+		ele2.click();
 	}
 	@Given("Click Test Results button")
 	public void click_test_results_button() throws InterruptedException {
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(
 				ExpectedConditions.elementToBeClickable(By.xpath("(//span[normalize-space(text())='Test Results'])[1]")));
@@ -90,25 +115,30 @@ public class OEP_8_Reports {
 	
 	@When("Select valid from date {string} in test results page")
 	public void select_valid_from_date_in_test_results_page(String fromDate) throws InterruptedException {
-		Thread.sleep(2000);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.elementToBeClickable(By.id("cal1")));
-		ele1 = driver.findElement(By.id("cal1"));
-		ele1.click();
-		Thread.sleep(1000);
-		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[@role='option'])[1]")));
-		ele1 = driver.findElement(By.xpath("(//div[@role='option'])[1]"));
-		ele1.click();
-		
-//		ele1.sendKeys(Keys.END);
-//		Thread.sleep(1000);
-//		String fromDateValue=ele1.getDomAttribute("value");
-//		int length = fromDateValue.length();
-//		for(int i=0;i<length;i++) {
-//			ele1.sendKeys(Keys.BACK_SPACE);
-//		}
-//		Thread.sleep(2000);
-//		ele1.sendKeys(fromDate);
+
+		// Click calendar
+		WebElement calendar = wait.until(ExpectedConditions.elementToBeClickable(By.id("cal1")));
+		calendar.click();
+
+		// Select first option
+		WebElement firstOption = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("(//div[@role='option'])[1]")));
+		firstOption.click();
+
+		// ⚠️ After clicking, the element may go stale → re-locate input again
+		WebElement fromDateInput = wait.until(ExpectedConditions.elementToBeClickable(By.id("cal1")));
+
+		// Clear existing value safely
+		fromDateInput.sendKeys(Keys.END);
+		Thread.sleep(500); // tiny pause for caret position
+		String fromDateValue = fromDateInput.getDomAttribute("value");
+		for (int i = 0; i < fromDateValue.length(); i++) {
+		    fromDateInput.sendKeys(Keys.BACK_SPACE);
+		}
+
+		// Enter new date
+		fromDateInput.sendKeys(fromDate);
+
 	}
 	@Then("Select valid to date {string} in test results page")
 	public void select_valid_to_date_in_test_results_page(String toDate) throws InterruptedException {
@@ -218,7 +248,7 @@ public class OEP_8_Reports {
 	}
 	@Given("Click Event Log button")
 	public void click_event_log_button() throws InterruptedException {
-		Thread.sleep(2000);
+		Thread.sleep(4000);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 		wait.until(
 				ExpectedConditions.elementToBeClickable(By.xpath("(//span[normalize-space(text())='Event Log'])[1]")));
@@ -289,8 +319,8 @@ public class OEP_8_Reports {
 	public void check_username_details_are_displayed_or_not_in_event_log_page(String userName) throws InterruptedException {
 		Thread.sleep(2000);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[contains(@class,'text-alternate align-items-center')])[1]")));
-		ele1 = driver.findElement(By.xpath("(//div[contains(@class,'text-alternate align-items-center')])[1]"));
+		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("(//div[contains(@class,'text-bold align-items-center')])[1]")));
+		ele1 = driver.findElement(By.xpath("(//div[contains(@class,'text-bold align-items-center')])[1]"));
 		String actualName=ele1.getText();
 		String expName=userName;
 		Assert.assertEquals("Search option is not working", actualName, expName);
@@ -375,8 +405,9 @@ public class OEP_8_Reports {
 	public void click_back_button_in_event_log_page() throws InterruptedException {
 		Thread.sleep(2000);
 		wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-		wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//button[normalize-space(text())='Back']")));
-		ele1 = driver.findElement(By.xpath("//button[normalize-space(text())='Back']"));
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.cssSelector("div.loaderStyle")));
+		wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[contains(@class,'btn btn-sm')]")));
+		ele1 = driver.findElement(By.xpath("//button[contains(@class,'btn btn-sm')]"));
 		ele1.click();
 	}
 	@Then("Check landing page in Event Log page")
